@@ -10,6 +10,11 @@ const { PORT } = process.env || 5008
 
 server.use(cors())
 server.use(json())
+
+server.get('/', (req, res) => {
+  res.send('Backend está funcionando!');
+});
+
 server.use(router)
 
-server.listen(PORT, () => console.log(`Acesse em http://localhost:${PORT}`))
+server.listen(PORT, () => console.log(`O server está rodando na porta: ${PORT}`))
