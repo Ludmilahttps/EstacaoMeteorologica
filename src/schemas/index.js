@@ -14,8 +14,8 @@ const databaseConfig = {
 const connection = new Pool(databaseConfig)
 
 export { connection }
-export * as clientSchema from "./clientSchema.js"
-export * as cakeSchema from "./cakeSchema.js"
-export * as orderSchema from "./orderSchema.js"
+export * as stationSchema from "./stationSchema.js"
+export * as dataSchema from "./dataSchema.js"
+export * as sensorSchema from "./sensorSchema.js"
 export * as authSchema from "./authSchema.js"
 export * as queries from "../queries/index.js"

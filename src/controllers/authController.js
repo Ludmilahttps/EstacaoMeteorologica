@@ -3,19 +3,17 @@ import { v4 as uuid } from 'uuid'
 import { authSchema } from "../schemas/index.js"
 
 export async function signIn (request, response) {
-    const { email, password } = request.body
+    const { matricula, senha } = request.body
     let user
 
     try {
-        user = await authSchema.findEmployee(email)
+        user = await authSchema.getUserByMatricula(matricula)
     } catch(error) {
         return response.send(error).status(500)
     }
-    console.log("here")
     const token = uuid()
     const id = user.id_employee
     try {
-        console.log("here")
         const position = await authSchema.findPosition(user.id_employee)
 
         console.log(position)
