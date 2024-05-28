@@ -3,9 +3,8 @@ import { dhtSchema } from "../schemas/index.js"
 import { connection } from "../schemas/index.js"
 
 export const validateData = (request, response, next) => {
-    console.log(request.body)
     const Body = dhtSchema.dhtSchema.validate(request.body)
-    console.log(Body)
+
     if (Body.error) return response.status(422).send("Some error with JSON body")
     const newData = {
       data: Body.value.data,

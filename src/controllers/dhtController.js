@@ -12,6 +12,7 @@ export const addData = async (request, response) => {
   }
 
   console.log(dado)
+  return response.status(201).send("DHT Data registered!")
 //   try {
 //     await dhtSchema.insertData(dado)
 //     console.log(dado)
