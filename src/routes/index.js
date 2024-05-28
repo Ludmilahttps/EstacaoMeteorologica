@@ -4,8 +4,9 @@ import { cakeRoute } from "./cakeRoute.js"
 import { orderRoute } from "./orderRoute.js"
 import { authRoute } from "./authRoute.js"
 import { pluviometerRoute } from "./pluviometerRoute.js"
+import { dhtRoute } from "./dhtRoute.js"
 
 const router = Router()
-router.use([clientRoute, cakeRoute, orderRoute, authRoute, pluviometerRoute])
+router.use([clientRoute, cakeRoute, orderRoute, authRoute, pluviometerRoute, dhtRoute])
 
 export default router
