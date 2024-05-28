@@ -20,7 +20,7 @@ export const insertData = async (dado) => {
 // }
 
 export const dhtSchema = joi.object({
-    tempo: joi.string().required().trim().pattern(/^\d{2}:\d{2}:\d{2} \d{2}\/\d{2}\/\d{4}$/),
+    data: joi.string().required().trim().pattern(/^\d{2}:\d{2}:\d{2} \d{2}\/\d{2}\/\d{4}$/),
     temperatura: joi.string().required().trim().pattern(/^\d{2}.\d{2}$/),
     umidade: joi.string().required().trim().pattern(/^\d{2}.\d{2}$/)
 })
