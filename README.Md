@@ -70,3 +70,45 @@ A aplicação web possui as seguintes funcionalidades:
   - `userSchema.js`: Valida os dados dos usuários antes de serem processados.
   
 - `server.js`: Arquivo principal que configura e inicia o servidor Express.
+
+## Como Usar
+
+### Pré-requisitos
+
+- Node.js instalado (versão 14 ou superior)
+- PostgreSQL instalado e configurado
+
+### Instalação
+
+1. **Clone o repositório:**
+
+   ```bash
+   git clone https://github.com/usuario/repositorio.git
+   cd repositorio
+
+2. **Instale as dependências:**
+
+   ```bash
+   npm install
+
+3. **Configure o banco de dados:**
+
+Crie um banco de dados PostgreSQL e configure as tabelas executando o arquivo tables.sql:
+
+   ```bash
+   psql -U seu_usuario -d seu_banco_de_dados -f tables.sql
+
+3. **Configure as variáveis de ambiente:**
+
+Crie um arquivo `.env` na raiz do seu projeto e use o `.env.example` como inspiração:
+
+### Execução
+
+1. **Inicie o servidor:**
+
+```bash
+npm start
+
+2. **Acesse a  aplicação:**
+
+A aplicação estará disponível em `http://localhost:3000`.
