@@ -81,22 +81,22 @@ A aplicação web possui as seguintes funcionalidades:
 ### Instalação
 
 1. **Clone o repositório:**
-
+   
    ```bash
    git clone https://github.com/usuario/repositorio.git
    cd repositorio
 
 2. **Instale as dependências:**
 
-  ```bash
-  npm install
+   ```bash
+   npm install
 
 3. **Configure o banco de dados:**
 
 Crie um banco de dados PostgreSQL e configure as tabelas executando o arquivo `tables.sql`
 
-  ```bash
-  psql -U seu_usuario -d seu_banco_de_dados -f tables.sql
+   ```bash
+   psql -U seu_usuario -d seu_banco_de_dados -f tables.sql
 
 
 4. **Configure as variáveis de ambiente:**
@@ -107,8 +107,8 @@ Crie um arquivo `.env` na raiz do seu projeto e use o `.env.example` como inspir
 
 1. **Inicie o servidor:**
 
-  ```bash
-  npm start
+   ```bash
+   npm start
 
 2. **Acesse a  aplicação:**
 
