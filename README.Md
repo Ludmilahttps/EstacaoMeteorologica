@@ -102,7 +102,7 @@ A aplicação web possui as seguintes funcionalidades:
 
 4. **Configure as variáveis de ambiente:**
 
-Crie um arquivo `.env` na raiz do seu projeto e use o `.env.example` como inspiração
+  Crie um arquivo `.env` na raiz do seu projeto e use o `.env.example` como inspiração
 
 ### Execução
 
@@ -113,6 +113,6 @@ Crie um arquivo `.env` na raiz do seu projeto e use o `.env.example` como inspir
 
 2. **Acesse a  aplicação:**
 
-A aplicação estará disponível em `http://localhost:3000`.
+  A aplicação estará disponível em `http://localhost:3000`.
 
 
