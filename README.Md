@@ -98,4 +98,6 @@ Crie um banco de dados PostgreSQL e configure as tabelas executando o arquivo ta
    ```bash
    psql -U seu_usuario -d seu_banco_de_dados -f tables.sql
 
-4. **ououou**
+4. **Faça:**
+
+
