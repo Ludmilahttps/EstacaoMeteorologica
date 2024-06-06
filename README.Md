@@ -93,7 +93,7 @@ A aplicação web possui as seguintes funcionalidades:
 
 3. **Configure o banco de dados:**
 
-
+   - Crie um banco de dados PostgreSQL e configure as tabelas executando o arquivo `tables.sql`
 
    ```bash
    psql -U seu_usuario -d seu_banco_de_dados -f tables.sql
