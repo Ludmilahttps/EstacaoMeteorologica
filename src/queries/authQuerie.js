@@ -1,26 +1,26 @@
-export const insertEmployee = () => {
+export const insertUser = () => {
     const query = `--sql
-          INSERT INTO employees ("name", "email", "password")
+          INSERT INTO public.User ("cpf", "email", "name", "position", "password")
           VALUES
-              ($1, $2, $3);        
-      `
-    return query
-}
-
-export const insertPositionEmployee = () => {
-    const query = `--sql
-          INSERT INTO employee_position ("employeeid", "positionid")
-          VALUES
-              ($1, $2);        
+              ($1, $2, $3, $4, $5);        
       `
     return query
 }
 
 export const updateEmail = () => {
     const query = `--sql
-            UPDATE public.employees
+            UPDATE public.User
             SET email = $1
-            WHERE id_employee = $2;       
+            WHERE cpf = $2;       
+      `
+    return query
+}
+
+export const updatePassword = () => {
+    const query = `--sql
+            UPDATE public.User
+            SET password = $1
+            WHERE cpf = $2;       
       `
     return query
 }
@@ -28,36 +28,55 @@ export const updateEmail = () => {
 export const getPassByEmail = () => {
     const query = `--sql
       SELECT
-          "password","id_employee"
+          "password"
       FROM
-          employees
+          User
       WHERE
           email = $1;
   `
     return query
 }
 
-export const getPositionById = () => {
+export const getPassByCpf = () => {
     const query = `--sql
       SELECT
-          "positionid"
+          "password"
       FROM
-          employee_position
+          User
       WHERE
-          employeeid = $1;
+          cpf = $1;
   `
     return query
 }
 
-export const getIdByEmail = () => {
+export const getPositionByEmail = () => {
     const query = `--sql
       SELECT
-          "id_employee"
+          "position"
       FROM
-          employees
+          User
       WHERE
           email = $1;
   `
     return query
 }
 
+export const getPositionByCpf = () => {
+    const query = `--sql
+      SELECT
+          "position"
+      FROM
+          User
+      WHERE
+          cpf = $1;
+  `
+    return query
+}
+
+export const deleteUser = () => {
+    const query = `--sql
+    DELETE FROM public.User
+    WHERE cpf = $1;
+  `
+    return query
+}

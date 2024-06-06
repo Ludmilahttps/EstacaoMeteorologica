@@ -26,23 +26,14 @@ CREATE TABLE public."Station"
     CHECK ("status" BETWEEN 0 AND 1)
 );
 
-CREATE TABLE public."Sensor" 
-(
-    idSensor serial4 INT PRIMARY KEY DEFAULT,
-    sensorName VARCHAR(100) NOT NULL,
-    lastCheckUp DATE,
-    idStation INT,
-    CONSTRAINT sensor_station_fkey FOREIGN KEY (idStation) REFERENCES public."Station" (idStation)
-);
-
 CREATE TABLE public."DHT11" 
 (
 	idDHT11 serial4 INT PRIMARY KEY,
 	'date' DATE NOT NULL,
 	temperature FLOAT NOT NULL,
 	humidity FLOAT NOT NULL,
-	idSensor INT NOT NULL,
-	CONSTRAINT dht11_sensor_fkey FOREIGN KEY (idSensor) REFERENCES public."Sensor" (idSensor)
+	idStation INT NOT NULL,
+	CONSTRAINT dht11_station_fkey FOREIGN KEY (idStation) REFERENCES public."Station" (idStation)
 );
 
 CREATE TABLE public."Pluviometer" 
@@ -50,8 +41,8 @@ CREATE TABLE public."Pluviometer"
 	idPluviometer serial4 INT PRIMARY KEY DEFAULT,
 	'date' DATE NOT NULL,
 	rainfall FLOAT NOT NULL,
-	idSensor INT NOT NULL,
-	CONSTRAINT pluviometer_sensor_fkey FOREIGN KEY (idSensor) REFERENCES public."Sensor" (idSensor)
+	idStation INT NOT NULL,
+	CONSTRAINT pluviometer_station_fkey FOREIGN KEY (idStation) REFERENCES public."Station" (idStation)
 );
 
 CREATE TABLE public."BMP280"
@@ -61,8 +52,8 @@ CREATE TABLE public."BMP280"
 	pressure FLOAT NOT NULL,
 	temperature FLOAT NOT NULL,
 	altitude FLOAT NOT NULL,
-	idSensor INT NOT NULL,
-	CONSTRAINT bmp280_sensor_fkey FOREIGN KEY (idSensor) REFERENCES public."Sensor" (idSensor)
+	idStation INT NOT NULL,
+	CONSTRAINT bmp280_station_fkey FOREIGN KEY (idStation) REFERENCES public."Station" (idStation)
 );
 
 CREATE TABLE public."Anemometer"
@@ -71,6 +62,6 @@ CREATE TABLE public."Anemometer"
 	'date' DATE NOT NULL,
 	windSpeed FLOAT NOT NULL,
 	windDirection FLOAT NOT NULL,
-	idSensor INT NOT NULL,
-	CONSTRAINT anemometer_sensor_fkey FOREIGN KEY (idSensor) REFERENCES public."Sensor" (idSensor)
+	idStation INT NOT NULL,
+	CONSTRAINT anemometer_station_fkey FOREIGN KEY (idStation) REFERENCES public."Station" (idStation)
 );
