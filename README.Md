@@ -97,6 +97,7 @@ Crie um banco de dados PostgreSQL e configure as tabelas executando o arquivo `t
 
    ```bash
    psql -U seu_usuario -d seu_banco_de_dados -f tables.sql
+   
 
 
 4. **Configure as variáveis de ambiente:**
