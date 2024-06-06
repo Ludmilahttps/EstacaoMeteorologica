@@ -91,9 +91,17 @@ A aplicação web possui as seguintes funcionalidades:
    ```bash
    npm install
 
+3. **Configure o banco de dados:**
+
+Crie um banco de dados PostgreSQL e configure as tabelas executando o arquivo tables.sql
+
+   ```bash
+   psql -U seu_usuario -d seu_banco_de_dados -f tables.sql
+
+
 4. **Configure as variáveis de ambiente:**
 
-Crie um arquivo `.env` na raiz do seu projeto e use o `.env.example` como inspiração:
+Crie um arquivo `.env` na raiz do seu projeto e use o `.env.example` como inspiração
 
 ### Execução
 
