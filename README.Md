@@ -18,8 +18,8 @@ O objetivo deste projeto como um todo é desenvolver uma estação meteorológic
 
 A equipe de software composta por Augusto Daleffe e Ludmilla Silveira. Ficou responsável pelo desenvolvimento completo da aplicação web mensionada anteriormente. Neste presente repositório será encontrada toda o back-and de tal aplicação.
 O objetivo dessa parte do desenvolvimento era primeiramente desenvolver um banco de dados robusto o suficie para comportar todos os dados que irão ser recebidos das estações de coleta, e garantir a segurança dos mesmos. 
-Considerando isso, foi desenvolvido todo um sistema de controle de acesso a interface web, onde existe um usuário master e somente ele pode cadastras novos usuários, garantindo acesso restrito a tal analise.
-No presente repositório vai ser encontrado desde a lógica da criação das tabelas no banco de dados, até a lógica de segurançã das requisições. 
+Considerando isso, foi desenvolvido todo um sistema de controle de acesso a interface web, onde existe um usuário master e somente ele pode cadastras novos usuários, garantindo acesso restrito a tal análise.
+No presente repositório vai ser encontrado desde a lógica da criação das tabelas no banco de dados, até a lógica de segurança das requisições. 
 
 ## Funcionalidades
 
