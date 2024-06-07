@@ -1,49 +1,58 @@
-export const insertUnidade = () => {
+export const insertStation = () => {
   const query = `--sql
-      INSERT INTO public."Unidade" (localidade, estado, data_manutencao)
-      VALUES ($1, $2, $3);
+      INSERT INTO public.Station ("location", "status" , "lastCheckUp")
+      VALUES ($1, '1', $3);
   `;
   return query;
 };
 
-export const getUnidadeById = () => {
+export const getStationById = () => {
   const query = `--sql
-      SELECT * FROM public."Unidade"
-      WHERE id_unidade = $1;
+      SELECT * FROM public.Station
+      WHERE idStation = $1;
   `;
   return query;
 };
 
-export const getUnidadeByManutencao = () => {
+export const getStationByCheckUp = () => {
   const query = `--sql
-      SELECT * FROM public."Unidade"
-      WHERE data_manutencao = $1;
+      SELECT * FROM public."Station"
+      WHERE lastCheckUp = $1;
   `;
   return query;
 };
 
-export const getUnidadeByEstado = () => {
+export const getStationByStatus = () => {
   const query = `--sql
-      SELECT * FROM public."Unidade"
-      WHERE estado = $1;
+      SELECT * FROM public."Station"
+      WHERE status = $1;
   `;
   return query;
 };
 
 
-export const updateUnidade = () => {
+export const updateStationCheckup = () => {
   const query = `--sql
-      UPDATE public."Unidade"
-      SET localidade = $1, estado = $2, data_manutencao = $3
-      WHERE id_unidade = $4;
+      UPDATE public."Station"
+      SET lastCheckUp = $1
+      WHERE idStation = $2;
   `;
   return query;
 };
 
-export const deleteUnidade = () => {
+export const updateStationStatus = () => {
   const query = `--sql
-      DELETE FROM public."Unidade"
-      WHERE id_unidade = $1;
+      UPDATE public."Station"
+      SET status = $1
+      WHERE idStation = $2;
+  `;
+  return query;
+};
+
+export const deleteStation = () => {
+  const query = `--sql
+      DELETE FROM public."Station"
+      WHERE idStation = $1;
   `;
   return query;
 };
