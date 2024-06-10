@@ -1,4 +1,4 @@
-import { authSchema, getUserByMatricula } from "../schemas/index.js";
+import { authSchema, getUserByCpf } from "../schemas/index.js";
 
 export const validateUser = async (request, response, next) => {
     const { error, value } = authSchema.validate(request.body);
@@ -7,17 +7,17 @@ export const validateUser = async (request, response, next) => {
         return response.status(422).send("Invalid data format");
     }
 
-    const { matricula } = value;
+    const { cpf } = value;
 
-    try {
-        const existingUser = await getUserByMatricula(matricula);
-        if (existingUser) {
-            return response.status(409).send("User already exists");
-        }
-    } catch (err) {
-        console.log("Database Error: ", err);
-        return response.status(500).send("Internal server error");
-    }
+    // try {
+    //     const existingUser = await getUserByCpf(cpf);
+    //     if (existingUser) {
+    //         return response.status(409).send("User already exists");
+    //     }
+    // } catch (err) {
+    //     console.log("Database Error: ", err);
+    //     return response.status(500).send("Internal server error");
+    // }
 
     response.locals.newUser = value;
     next();

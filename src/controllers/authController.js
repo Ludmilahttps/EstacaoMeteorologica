@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid'
 import { authSchema } from "../schemas/index.js"
 
 export async function signIn (request, response) {
-    const { matricula, senha } = request.body
+    const { matrcicula, senha } = request.body
     let user
 
     try {
@@ -42,18 +42,19 @@ export async function update (request, response) {
 }
 
 export async function signUp (request, response) {
-    const { name, position, email, password } = response.locals.newEmployee
-    const employee = {
+    const { cpf, email, name, position,  password } = response.locals.newUser
+    const user = {
+        cpf,
+        email,
         name,
         position,
-        email,
         password,
     }
 
     try {
         const pass = bcrypt.hashSync(password, 10)
-        employee.password = pass
-        await authSchema.insertEmployee(employee)
+        user.password = pass
+        await authSchema.insertUser(user)
 
         return response.status(201).send('OK')
     } catch(error) {

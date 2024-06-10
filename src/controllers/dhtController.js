@@ -10,16 +10,15 @@ export const addData = async (request, response) => {
     temperatura,
     umidade,
   }
-
   console.log(dado)
   return response.status(201).send("DHT Data registered!")
-//   try {
-//     await dhtSchema.insertData(dado)
-//     console.log(dado)
-//     return response.status(201).send("DHT Data registered!")
-//   } catch (error) {
-//     return response.status(500).send(`Internal system error.`)
-//   }
+  try {
+    await dhtSchema.insertData(dado)
+    console.log(dado)
+    return response.status(201).send("DHT Data registered!")
+  } catch (error) {
+    return response.status(500).send(`Internal system error.`)
+  }
 }
 
 // export async function getClientsOrders(request, response) {

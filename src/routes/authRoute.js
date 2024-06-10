@@ -1,12 +1,12 @@
 import { Router } from "express"
 import { signIn, signUp, update } from "../controllers/authController.js"
-import { validateEmployee } from "../middlewares/authMiddleware.js"
+import { validateUser } from "../middlewares/authMiddleware.js"
 
 const authRoute = Router()
 
 authRoute.post(
     '/sign-up',
-    validateEmployee, 
+    validateUser, 
     signUp
 )
 

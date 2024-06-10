@@ -38,9 +38,9 @@ export const deleteUser = async (matricula) => {
     }
 };
 
-export const getUserByMatricula = async (matricula) => {
+export const getUserByCpf = async (cpf) => {
     try {
-        const { rows } = await connection.query(querieAuth.getUserByMatricula(), [matricula]);
+        const { rows } = await connection.query(querieAuth.getUserByCpf(), [cpf]);
         return rows[0];
     } catch (error) {
         console.log(error);
