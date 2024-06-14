@@ -1,6 +1,6 @@
 import { authSchema } from "../schemas/index.js";
 
-export const validateInsertUser = (req, res, next) => {
+export const validateUser = (req, res, next) => {
     const { error } = authSchema.validate(req.body);
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
