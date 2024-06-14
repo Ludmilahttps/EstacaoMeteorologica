@@ -1,6 +1,6 @@
 export const insertUser = () => {
     const query = `--sql
-          INSERT INTO public.User ("cpf", "email", "name", "position", "password")
+          INSERT INTO public."User" ("cpf", "email", "name", "position", "password")
           VALUES
               ($1, $2, $3, $4, $5);        
       `
@@ -9,7 +9,7 @@ export const insertUser = () => {
 
 export const updateEmail = () => {
     const query = `--sql
-            UPDATE public.User
+            UPDATE public."User"
             SET email = $1
             WHERE cpf = $2;       
       `
@@ -18,7 +18,7 @@ export const updateEmail = () => {
 
 export const updatePassword = () => {
     const query = `--sql
-            UPDATE public.User
+            UPDATE public."User"
             SET password = $1
             WHERE cpf = $2;       
       `
@@ -30,7 +30,7 @@ export const getPassByEmail = () => {
       SELECT
           "password"
       FROM
-          User
+          public."User"
       WHERE
           email = $1;
   `
@@ -42,7 +42,7 @@ export const getPassByCpf = () => {
       SELECT
           "password"
       FROM
-          User
+          public."User"
       WHERE
           cpf = $1;
   `
@@ -54,7 +54,7 @@ export const getPositionByEmail = () => {
       SELECT
           "position"
       FROM
-          User
+          public."User"
       WHERE
           email = $1;
   `
@@ -66,7 +66,7 @@ export const getPositionByCpf = () => {
       SELECT
           "position"
       FROM
-          User
+          public."User"
       WHERE
           cpf = $1;
   `
@@ -75,7 +75,7 @@ export const getPositionByCpf = () => {
 
 export const deleteUser = () => {
     const query = `--sql
-    DELETE FROM public.User
+    DELETE FROM public."User"
     WHERE cpf = $1;
   `
     return query

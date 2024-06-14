@@ -2,7 +2,7 @@ export const insertData = () => {
         
         const query = `--sql
             INSERT INTO
-                BMP180 ("date", "pressure", "altitude", "idStation")
+                public."BMP280" ("date", "pressure", "altitude", "idstation")
             VALUES
                 ($1, $2, $3, $4);        
         `

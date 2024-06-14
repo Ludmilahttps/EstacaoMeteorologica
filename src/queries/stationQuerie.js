@@ -52,7 +52,7 @@ export const updateStationStatus = () => {
 export const deleteStation = () => {
   const query = `--sql
       DELETE FROM public."Station"
-      WHERE idStation = $1;
+      WHERE idstation = $1;
   `;
   return query;
 };
