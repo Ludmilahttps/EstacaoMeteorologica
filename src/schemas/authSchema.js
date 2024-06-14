@@ -4,58 +4,105 @@ import { connection } from "./index.js";
 import { querieAuth } from "../queries/index.js";
 
 export const authSchema = Joi.object({
-    matricula: Joi.string().required(),
-    nome: Joi.string().required(),
-    tipo: Joi.number().required(),
-    senha: Joi.string().required(),
+    cpf: Joi.string().length(11).required(),
+    email: Joi.string().email().max(50).required(),
+    name: Joi.string().max(50).required(),
+    position: Joi.number().integer().min(0).max(2).required(),
+    password: Joi.string().min(8).max(255).required()
 });
 
-export const insertUser = async (user) => {
-    const { matricula, nome, tipo, senha } = user;
-    try {
-        await connection.query(querieAuth.insertUser(), [matricula, nome, tipo, senha]);
-    } catch (error) {
-        console.log(error);
-        throw new Error("Error inserting user");
-    }
-};
+export const insertUser = () => {
+    const query = `--sql
+        INSERT INTO public.User ("cpf", "email", "name", "position", "password")
+        VALUES
+            ($1, $2, $3, $4, $5);
+    `;
+    return query;
+}
 
-export const updateUserPassword = async (matricula, newPassword) => {
-    try {
-        await connection.query(querieAuth.updateUserPassword(), [newPassword, matricula]);
-    } catch (error) {
-        console.log(error);
-        throw new Error("Error updating user password");
-    }
-};
+export const updateEmail = () => {
+    const query = `--sql
+        UPDATE public.User
+        SET email = $1
+        WHERE cpf = $2;
+    `;
+    return query;
+}
 
-export const deleteUser = async (matricula) => {
-    try {
-        await connection.query(querieAuth.deleteUser(), [matricula]);
-    } catch (error) {
-        console.log(error);
-        throw new Error("Error deleting user");
-    }
-};
+export const updatePassword = () => {
+    const query = `--sql
+        UPDATE public.User
+        SET password = $1
+        WHERE cpf = $2;
+    `;
+    return query;
+}
 
-export const getUserByCpf = async (cpf) => {
-    try {
-        const { rows } = await connection.query(querieAuth.getUserByCpf(), [cpf]);
-        return rows[0];
-    } catch (error) {
-        console.log(error);
-        throw new Error("Error fetching user");
-    }
-};
+export const getPassByEmail = () => {
+    const query = `--sql
+        SELECT
+            "password"
+        FROM
+            User
+        WHERE
+            email = $1;
+    `;
+    return query;
+}
 
-export const authenticateUser = async (matricula, senha) => {
+export const getPassByCpf = () => {
+    const query = `--sql
+        SELECT
+            "password"
+        FROM
+            User
+        WHERE
+            cpf = $1;
+    `;
+    return query;
+}
+
+export const getPositionByEmail = () => {
+    const query = `--sql
+        SELECT
+            "position"
+        FROM
+            User
+        WHERE
+            email = $1;
+    `;
+    return query;
+}
+
+export const getPositionByCpf = () => {
+    const query = `--sql
+        SELECT
+            "position"
+        FROM
+            User
+        WHERE
+            cpf = $1;
+    `;
+    return query;
+}
+
+export const deleteUser = () => {
+    const query = `--sql
+        DELETE FROM public.User
+        WHERE cpf = $1;
+    `;
+    return query;
+}
+
+
+export const authenticateUser = async (cpf, password) => {
     try {
-        const { rows } = await connection.query(querieAuth.authenticateUser(), [matricula]);
+        const { rows } = await connection.query(querieAuth.authenticateUser(), [cpf]);
         const user = rows[0];
         if (!user) {
             throw new Error("User not found");
         }
-        const isPasswordValid = await bcrypt.compare(senha, user.senha);
+        const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
             throw new Error("Invalid password");
         }
