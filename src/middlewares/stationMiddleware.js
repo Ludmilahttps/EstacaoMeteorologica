@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { stationSchema } from "../stationSchema.js";
+import { stationSchema } from "../schemas/index.js";
 
 export const validateInsertStation = (req, res, next) => {
     const { error } = stationSchema.validate(req.body);

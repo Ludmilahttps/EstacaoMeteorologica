@@ -1,4 +1,4 @@
-import { authSchema } from "../authSchema.js";
+import { authSchema } from "../schemas/index.js";
 
 export const validateInsertUser = (req, res, next) => {
     const { error } = authSchema.validate(req.body);
