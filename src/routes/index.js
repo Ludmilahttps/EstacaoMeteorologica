@@ -1,7 +1,4 @@
 import { Router } from "express"
-import { clientRoute } from "./clientRoute.js"
-import { cakeRoute } from "./cakeRoute.js"
-import { orderRoute } from "./orderRoute.js"
 import { authRoute } from "./authRoute.js"
 import { pluviometerRoute } from "./pluviometerRoute.js"
 import { anemometerRoute } from "./anemometerRoute.js"
