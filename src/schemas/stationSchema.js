@@ -1,6 +1,6 @@
 import Joi from "joi";
 import { connection } from "./index.js";
-import { querieUnidade } from "../queries/index.js";
+import { querieStation} from "../queries/index.js";
 
 export const stationSchema = Joi.object({
     location: Joi.string().max(100).required(),
