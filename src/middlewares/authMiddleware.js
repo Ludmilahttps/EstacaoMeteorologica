@@ -1,60 +1,44 @@
-import { authSchema, getUserByCpf } from "../schemas/index.js";
+import { authSchema } from "../authSchema.js";
 
-export const validateUser = async (request, response, next) => {
-    const { error, value } = authSchema.validate(request.body);
+export const validateInsertUser = (req, res, next) => {
+    const { error } = authSchema.validate(req.body);
     if (error) {
-        console.log("Validation Error: ", error.details);
-        return response.status(422).send("Invalid data format");
+        return res.status(400).json({ error: error.details[0].message });
     }
-
-    const { cpf } = value;
-
-    // try {
-    //     const existingUser = await getUserByCpf(cpf);
-    //     if (existingUser) {
-    //         return response.status(409).send("User already exists");
-    //     }
-    // } catch (err) {
-    //     console.log("Database Error: ", err);
-    //     return response.status(500).send("Internal server error");
-    // }
-
-    response.locals.newUser = value;
     next();
 };
 
-export const updateUserPassword = async (request, response, next) => {
-    const { matricula, newPassword } = request.body;
-
-    try {
-        await updateUserPassword(matricula, newPassword);
-        response.status(200).send("Password updated successfully");
-    } catch (err) {
-        console.log("Database Error: ", err);
-        return response.status(500).send("Internal server error");
+export const validateUpdateEmail = (req, res, next) => {
+    const schema = Joi.object({
+        cpf: Joi.string().length(11).required(),
+        email: Joi.string().email().max(50).required(),
+    });
+    const { error } = schema.validate(req.body);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
     }
+    next();
 };
 
-export const deleteUser = async (request, response, next) => {
-    const { matricula } = request.body;
-
-    try {
-        await deleteUser(matricula);
-        response.status(200).send("User deleted successfully");
-    } catch (err) {
-        console.log("Database Error: ", err);
-        return response.status(500).send("Internal server error");
+export const validateUpdatePassword = (req, res, next) => {
+    const schema = Joi.object({
+        cpf: Joi.string().length(11).required(),
+        password: Joi.string().min(8).max(255).required(),
+    });
+    const { error } = schema.validate(req.body);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
     }
+    next();
 };
-
-export const authenticateUser = async (request, response, next) => {
-    const { matricula, senha } = request.body;
-
-    try {
-        const user = await authenticateUser(matricula, senha);
-        response.status(200).json(user);
-    } catch (err) {
-        console.log("Authentication Error: ", err.message);
-        return response.status(401).send("Authentication failed");
+export const validateAuthenticateUser = (req, res, next) => {
+    const schema = Joi.object({
+        cpf: Joi.string().length(11).required(),
+        password: Joi.string().min(8).max(255).required(),
+    });
+    const { error } = schema.validate(req.body);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
     }
+    next();
 };

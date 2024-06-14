@@ -1,93 +1,45 @@
-import { unidadeSchema, getUnidadeById } from "../schemas/index.js";
+import Joi from "joi";
+import { stationSchema } from "../stationSchema.js";
 
-export const validateUnidade = async (request, response, next) => {
-    const { error, value } = unidadeSchema.validate(request.body);
+export const validateInsertStation = (req, res, next) => {
+    const { error } = stationSchema.validate(req.body);
     if (error) {
-        console.log("Validation Error: ", error.details);
-        return response.status(422).send("Invalid data format");
+        return res.status(400).json({ error: error.details[0].message });
     }
-
-    const { id_unidade } = value;
-
-    try {
-        const existingUnidade = await getUnidadeById(id_unidade);
-        if (existingUnidade) {
-            return response.status(409).send("Unidade already exists");
-        }
-    } catch (err) {
-        console.log("Database Error: ", err);
-        return response.status(500).send("Internal server error");
-    }
-
-    response.locals.newUnidade = value;
     next();
 };
 
-export const updateUnidade = async (request, response, next) => {
-    const { id_unidade, updatedUnidade } = request.body;
-
-    try {
-        await updateUnidade(id_unidade, updatedUnidade);
-        response.status(200).send("Unidade updated successfully");
-    } catch (err) {
-        console.log("Database Error: ", err);
-        return response.status(500).send("Internal server error");
+export const validateUpdateStationStatus = (req, res, next) => {
+    const schema = Joi.object({
+        idStation: Joi.number().integer().required(),
+        status: Joi.number().integer().min(0).max(1).required(),
+    });
+    const { error } = schema.validate(req.body);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
     }
+    next();
 };
 
-export const deleteUnidade = async (request, response, next) => {
-    const { id_unidade } = request.body;
-
-    try {
-        await deleteUnidade(id_unidade);
-        response.status(200).send("Unidade deleted successfully");
-    } catch (err) {
-        console.log("Database Error: ", err);
-        return response.status(500).send("Internal server error");
+export const validateUpdateStationCheckup = (req, res, next) => {
+    const schema = Joi.object({
+        idStation: Joi.number().integer().required(),
+        lastCheckUp: Joi.date().required(),
+    });
+    const { error } = schema.validate(req.body);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
     }
+    next();
 };
 
-export const getUnidadeById = async (request, response, next) => {
-    const { id_unidade } = request.params;
-
-    try {
-        const unidade = await getUnidadeById(id_unidade);
-        if (!unidade) {
-            return response.status(404).send("Unidade not found");
-        }
-        response.status(200).json(unidade);
-    } catch (err) {
-        console.log("Database Error: ", err);
-        return response.status(500).send("Internal server error");
+export const validateGetStationById = (req, res, next) => {
+    const schema = Joi.object({
+        idStation: Joi.number().integer().required(),
+    });
+    const { error } = schema.validate(req.params);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
     }
-};
-
-export const getUnidadeByManutencao = async (request, response, next) => {
-    const { data_manutencao } = request.params;
-
-    try {
-        const unidade = await getUnidadeByManutencao(data_manutencao);
-        if (!unidade) {
-            return response.status(404).send("Unidade not found");
-        }
-        response.status(200).json(unidade);
-    } catch (err) {
-        console.log("Database Error: ", err);
-        return response.status(500).send("Internal server error");
-    }
-};
-
-export const getUnidadeByEstado = async (request, response, next) => {
-    const { estado } = request.params;
-
-    try {
-        const unidade = await getUnidadeByEstado(estado);
-        if (!unidade) {
-            return response.status(404).send("Unidade not found");
-        }
-        response.status(200).json(unidade);
-    } catch (err) {
-        console.log("Database Error: ", err);
-        return response.status(500).send("Internal server error");
-    }
+    next();
 };
