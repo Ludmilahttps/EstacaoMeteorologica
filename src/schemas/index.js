@@ -15,7 +15,6 @@ const connection = new Pool(databaseConfig)
 
 export { connection }
 export * as stationSchema from "./stationSchema.js"
-export * as dataSchema from "./dataSchema.js"
 export * as sensorSchema from "./sensorSchema.js"
 export * as authSchema from "./authSchema.js"
 export * as pluviometerSchema from "./pluviometerSchema.js"
