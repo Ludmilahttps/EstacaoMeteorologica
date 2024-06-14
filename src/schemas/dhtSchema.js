@@ -3,9 +3,11 @@ import { connection } from "./index.js"
 import { querieDht } from "../queries/index.js"
 
 export const insertData = async (dado) => {
-  const { data, temperatura, umidade } = dado
+  const { idStation, temperatura, umidade } = dado
+  const date = new Date().toISOString().split('T')[0];
+  
   try {
-    await connection.query(querieDht.insertData(), [data, temperatura, umidade])
+    await connection.query(querieDht.insertData(), [date, temperatura, umidade, idStation])
   } catch (error) {
     console.log(error)
   }
@@ -20,7 +22,7 @@ export const insertData = async (dado) => {
 // }
 
 export const dhtSchema = joi.object({
-    data: joi.string().required().trim().pattern(/^\d{2}:\d{2}:\d{2} \d{2}\/\d{2}\/\d{4}$/),
-    temperatura: joi.string().required().trim().pattern(/^\d{2}.\d{2}$/),
-    umidade: joi.string().required().trim().pattern(/^\d{2}.\d{2}$/)
-})
+    idStation: joi.string().required().trim(),
+    temperatura: joi.string().required().trim().pattern(/^\d{2}\.\d{2}$/),
+    umidade: joi.string().required().trim().pattern(/^\d{2}\.\d{2}$/)
+});
