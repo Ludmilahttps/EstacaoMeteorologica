@@ -2,7 +2,7 @@ import { request, response } from 'express';
 import { bmpSchema } from '../schemas/index.js';
 
 export const validateData = (request, response, next) => {
-  const { error, value } = bmpSchema.validate(request.body);
+  const { error, value } = bmpSchema.bmpSchema.validate(request.body);
 
   if (error) {
     return response.status(422).send("Some error with JSON body");
