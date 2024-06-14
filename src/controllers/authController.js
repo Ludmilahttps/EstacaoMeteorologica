@@ -3,11 +3,11 @@ import { v4 as uuid } from 'uuid'
 import { authSchema } from "../schemas/index.js"
 
 export async function signIn (request, response) {
-    const { matrcicula, senha } = request.body
+    const { cpf, password } = request.body
     let user
 
     try {
-        user = await authSchema.getUserByMatricula(matricula)
+        user = await authSchema.getPassByCpf(cpf)
     } catch(error) {
         return response.send(error).status(500)
     }
