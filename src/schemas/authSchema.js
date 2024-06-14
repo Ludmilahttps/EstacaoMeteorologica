@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { connection } from "./index.js";
 import { querieAuth } from "../queries/index.js";
 
+// Definição do schema de validação para os usuários
 export const authSchema = Joi.object({
     cpf: Joi.string().length(11).required(),
     email: Joi.string().email().max(50).required(),
@@ -11,90 +12,92 @@ export const authSchema = Joi.object({
     password: Joi.string().min(8).max(255).required()
 });
 
-export const insertUser = () => {
-    const query = `--sql
-        INSERT INTO public.User ("cpf", "email", "name", "position", "password")
-        VALUES
-            ($1, $2, $3, $4, $5);
-    `;
-    return query;
-}
+// Função para inserir um usuário
+export const insertUser = async (user) => {
+    const { cpf, email, name, position, password } = user;
+    try {
+        await connection.query(querieAuth.insertUser(), [cpf, email, name, position, password]);
+    } catch (error) {
+        console.log(error);
+        throw new Error("Error inserting user");
+    }
+};
 
-export const updateEmail = () => {
-    const query = `--sql
-        UPDATE public.User
-        SET email = $1
-        WHERE cpf = $2;
-    `;
-    return query;
-}
+// Função para atualizar o email de um usuário
+export const updateEmail = async (cpf, email) => {
+    try {
+        await connection.query(querieAuth.updateEmail(), [email, cpf]);
+    } catch (error) {
+        console.log(error);
+        throw new Error("Error updating email");
+    }
+};
 
-export const updatePassword = () => {
-    const query = `--sql
-        UPDATE public.User
-        SET password = $1
-        WHERE cpf = $2;
-    `;
-    return query;
-}
+// Função para atualizar a senha de um usuário
+export const updatePassword = async (cpf, password) => {
+    try {
+        await connection.query(querieAuth.updatePassword(), [password, cpf]);
+    } catch (error) {
+        console.log(error);
+        throw new Error("Error updating password");
+    }
+};
 
-export const getPassByEmail = () => {
-    const query = `--sql
-        SELECT
-            "password"
-        FROM
-            User
-        WHERE
-            email = $1;
-    `;
-    return query;
-}
+// Função para obter a senha por email
+export const getPassByEmail = async (email) => {
+    try {
+        const result = await connection.query(querieAuth.getPassByEmail(), [email]);
+        return result.rows[0].password;
+    } catch (error) {
+        console.log(error);
+        throw new Error("Error fetching password by email");
+    }
+};
 
-export const getPassByCpf = () => {
-    const query = `--sql
-        SELECT
-            "password"
-        FROM
-            User
-        WHERE
-            cpf = $1;
-    `;
-    return query;
-}
+// Função para obter a senha por CPF
+export const getPassByCpf = async (cpf) => {
+    try {
+        const result = await connection.query(querieAuth.getPassByCpf(), [cpf]);
+        return result.rows[0].password;
+    } catch (error) {
+        console.log(error);
+        throw new Error("Error fetching password by CPF");
+    }
+};
 
-export const getPositionByEmail = () => {
-    const query = `--sql
-        SELECT
-            "position"
-        FROM
-            User
-        WHERE
-            email = $1;
-    `;
-    return query;
-}
+// Função para obter a posição por email
+export const getPositionByEmail = async (email) => {
+    try {
+        const result = await connection.query(querieAuth.getPositionByEmail(), [email]);
+        return result.rows[0].position;
+    } catch (error) {
+        console.log(error);
+        throw new Error("Error fetching position by email");
+    }
+};
 
-export const getPositionByCpf = () => {
-    const query = `--sql
-        SELECT
-            "position"
-        FROM
-            User
-        WHERE
-            cpf = $1;
-    `;
-    return query;
-}
+// Função para obter a posição por CPF
+export const getPositionByCpf = async (cpf) => {
+    try {
+        const result = await connection.query(querieAuth.getPositionByCpf(), [cpf]);
+        return result.rows[0].position;
+    } catch (error) {
+        console.log(error);
+        throw new Error("Error fetching position by CPF");
+    }
+};
 
-export const deleteUser = () => {
-    const query = `--sql
-        DELETE FROM public.User
-        WHERE cpf = $1;
-    `;
-    return query;
-}
+// Função para deletar um usuário
+export const deleteUser = async (cpf) => {
+    try {
+        await connection.query(querieAuth.deleteUser(), [cpf]);
+    } catch (error) {
+        console.log(error);
+        throw new Error("Error deleting user");
+    }
+};
 
-
+// Função para autenticar um usuário
 export const authenticateUser = async (cpf, password) => {
     try {
         const { rows } = await connection.query(querieAuth.authenticateUser(), [cpf]);
