@@ -2,7 +2,7 @@ import { request, response } from 'express';
 import { anemometerSchema } from '../schemas/index.js';
 
 export const validateData = (request, response, next) => {
-  const { error, value } = anemometerSchema.validate(request.body);
+  const { error, value } = anemometerSchema.anemometerSchema.validate(request.body);
 
   if (error) {
     return response.status(422).send("Some error with JSON body");
