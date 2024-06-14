@@ -2,9 +2,9 @@ export const insertData = () => {
     
     const query = `--sql
           INSERT INTO
-              Pluviometer ("date", "rainfall")
+              Pluviometer ("date", "rainfall", "idStation")
           VALUES
-              ($1, $2, '0');        
+              ($1, $2, $3);        
       `
     return query
   }
