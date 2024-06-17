@@ -14,8 +14,8 @@ export const insertData = async (dado) => {
 };
 
 export const bmpSchema = Joi.object({
-    pressure: Joi.number().required(),
-    temperature: Joi.number().required(),
-    altitude: Joi.number().required(),
+    pressure: Joi.string().required().trim(),
+    temperature: Joi.string().required().trim(),
+    altitude: Joi.string().required().trim(),
     idStation: Joi.string().required().trim(),
 });

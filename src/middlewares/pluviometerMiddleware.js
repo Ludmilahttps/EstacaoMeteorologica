@@ -8,8 +8,7 @@ export const validateData = (request, response, next) => {
     if (Body.error) return response.status(422).send("Some error with JSON body")
     const newData = {
       idStation: Body.value.idStation,
-      temperatura: Body.value.temperatura,
-      umidade: Body.value.umidade,
+      rainfall: Body.value.rainfall,
     }
   
     response.locals.newData = newData

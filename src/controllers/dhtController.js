@@ -4,11 +4,11 @@ import { dhtSchema } from "../schemas/index.js"
 dotenv.config()
 
 export const addData = async (request, response) => {
-  const { idStation, temperatura, umidade } = response.locals.newData
+  const { idStation, temperature, humidity } = response.locals.newData
   const dado = {
     idStation,
-    temperatura,
-    umidade,
+    temperature,
+    humidity,
   }
   console.log(dado)
   try {

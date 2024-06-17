@@ -4,11 +4,10 @@ import { pluviometerSchema } from "../schemas/index.js"
 dotenv.config()
 
 export const addData = async (request, response) => {
-  const { idStation, temperatura, umidade } = response.locals.newData
+  const { idStation, rainfall } = response.locals.newData
   const dado = {
     idStation,
-    temperatura,
-    umidade,
+    rainfall,
   }
   console.log(dado)
   try {
