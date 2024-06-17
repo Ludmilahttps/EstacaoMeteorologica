@@ -8,7 +8,7 @@ export const authSchema = Joi.object({
     cpf: Joi.string().length(11).required(),
     email: Joi.string().email().max(50).required(),
     name: Joi.string().max(50).required(),
-    position: Joi.string().integer().min(0).max(2).required(),
+    position: Joi.number().integer().min(0).max(2).required(),
     password: Joi.string().min(8).max(255).required()
 });
 
