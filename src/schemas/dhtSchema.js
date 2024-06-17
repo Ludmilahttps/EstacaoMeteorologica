@@ -3,11 +3,11 @@ import { connection } from "./index.js"
 import { querieDht } from "../queries/index.js"
 
 export const insertData = async (dado) => {
-  const { idStation, temperatura, umidade } = dado
+  const { idStation, temperature, humidity } = dado
   const date = new Date().toISOString().split('T')[0];
   
   try {
-    await connection.query(querieDht.insertData(), [date, temperatura, umidade, idStation])
+    await connection.query(querieDht.insertData(), [date, temperature, humidity, idStation])
   } catch (error) {
     console.log(error)
   }
