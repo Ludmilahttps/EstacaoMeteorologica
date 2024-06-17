@@ -61,7 +61,7 @@ CREATE TABLE public."Anemometer"
 	idAnemometer serial4 INT PRIMARY KEY,
 	'date' DATE NOT NULL,
 	windSpeed FLOAT NOT NULL,
-	windDirection FLOAT NOT NULL,
+	windDirection VARCHAR(10) NOT NULL,
 	windAngle FLOAT NOT NULL,
 	idStation INT NOT NULL,
 	CONSTRAINT anemometer_station_fkey FOREIGN KEY (idStation) REFERENCES public."Station" (idStation)
