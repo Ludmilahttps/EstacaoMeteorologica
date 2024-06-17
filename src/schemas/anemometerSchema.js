@@ -23,8 +23,8 @@ export const insertData = async (dado) => {
 // }
 
 export const anemometerSchema = joi.object({
+    idStation: joi.string().required().trim(),
     windSpeed: joi.string().required().trim(),
     windDirection: joi.string().required().trim(),
     windAngle: joi.string().required().trim(),
-    idStation: joi.string().required().trim(),
 });
