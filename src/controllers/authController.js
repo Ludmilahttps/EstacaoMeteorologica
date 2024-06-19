@@ -4,10 +4,10 @@ import { authSchema } from "../schemas/index.js"
 
 export async function signIn (request, response) {
     const { cpf, password } = request.body
-    let user
+    let userPassword
 
     try {
-        user = await authSchema.getPassByCpf(cpf)
+        userPassword = await authSchema.getPassByCpf(cpf)
     } catch(error) {
         return response.send(error).status(500)
     }
@@ -17,7 +17,7 @@ export async function signIn (request, response) {
 
         console.log(position)
 
-        if(user && bcrypt.compareSync(password, user.password)) {
+        if(bcrypt.compareSync(password, userPassword)) {
             response.send({token, position})
         } else {
             return response.status(401).send('Unauthorized')
