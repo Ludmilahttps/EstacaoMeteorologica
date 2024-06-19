@@ -133,7 +133,7 @@ A aplicação web possui as seguintes funcionalidades:
 
 ## Como fazer o Deploy na nuvem
 
-No diretório ```Docs/``` existe o arquivo ```Guia de Deploy.pdf``` nele pode ser encontrado um passo a passo de como nós fizemos o deploy da nossa aplicação de forma gratuita na plataforma do Vercel. 
+No diretório ```Docs/``` existe o arquivo [Guia de deploy.pdf](/Docs/Guia%20de%20Deploy.pdf) nele pode ser encontrado um passo a passo de como nós fizemos o deploy da nossa aplicação de forma gratuita na plataforma do Vercel. 
 
 O guia trás de forma muito bem detalhada, com presença de imagens o passo a passo que você deve seguir para conseguir utilizar essa aplicação na nuvem. 
 
@@ -141,7 +141,7 @@ O guia trás de forma muito bem detalhada, com presença de imagens o passo a pa
 
 ## Requisitos de software e regras de uso 
 
-No diretório ```Docs/``` existe o arquivo ```Requisitos de Software.pdf``` nele pode ser encontrado todosos requisitos funcionais e não funcionais do projeto de software, bem como as regras de negócio que foram utilizadas para o desenvolvimento do mesmo.
+No diretório ```Docs/``` existe o arquivo [Requisitos de Software.pdf](/Docs/Requisitos%20de%20Software.pdf) nele pode ser encontrado todosos requisitos funcionais e não funcionais do projeto de software, bem como as regras de negócio que foram utilizadas para o desenvolvimento do mesmo.
 
 ## Diagrama de Casos de uso 
 
