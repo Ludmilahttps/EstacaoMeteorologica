@@ -12,14 +12,13 @@ export async function signIn (request, response) {
         return response.send(error).status(500)
     }
     const token = uuid()
-    const id = user.id_employee
     try {
-        const position = await authSchema.findPosition(user.id_employee)
+        const position = await authSchema.getPositionByCpf(cpf)
 
         console.log(position)
 
         if(user && bcrypt.compareSync(password, user.password)) {
-            response.send({token, id, position})
+            response.send({token, position})
         } else {
             return response.status(401).send('Unauthorized')
         }
@@ -28,18 +27,18 @@ export async function signIn (request, response) {
     }
 }
 
-export async function update (request, response) {
-    const { email, id_employee } = request.body
-    console.log(email)
-    console.log(id_employee)
-    const token = uuid()
-    try {
-        await authSchema.updateEmail(email, id_employee)
-        return response.status(201).send('OK')
-    } catch(error) {
-        return response.send(error).status(500)
-    }
-}
+// export async function update (request, response) {
+//     const { email, id_employee } = request.body
+//     console.log(email)
+//     console.log(id_employee)
+//     const token = uuid()
+//     try {
+//         await authSchema.updateEmail(email, id_employee)
+//         return response.status(201).send('OK')
+//     } catch(error) {
+//         return response.send(error).status(500)
+//     }
+// }
 
 export async function signUp (request, response) {
     const { cpf, email, name, position,  password } = response.locals.newUser
