@@ -12,14 +12,30 @@ Este projeto foi desenvolvido durante a disciplina de Projeto Integrador 1 do cu
 
 ## Descrição Geral
 
-O objetivo deste projeto como um todo é desenvolver uma estação meteorológica utilizando quatro sensores: Anemômetro, Pluviómetro, DHT11 e BMP280. Estes sensores coletam dados como temperatura, umidade, quantidade de chuva, velocidade e direção do vento. Os dados são enviados por meio de um ESP32 para um banco de dados na nuvem. Onde os dados serão tratados adequadamente e poderão ser vizualizados e analizados através de uma aplicaçã web.
+O objetivo deste projeto como um todo é desenvolver uma estação meteorológica utilizando quatro sensores: Anemômetro, Pluviómetro, DHT11 e BMP280. Estes sensores coletam dados como temperatura, umidade, quantidade de chuva, velocidade e direção do vento, etc.
+
+ Os dados são enviados por meio de um ESP32 para um banco de dados na nuvem. Onde os dados serão tratados adequadamente e poderão ser vizualizados e analizados através de uma aplicaçã web.
 
 ## Descrição Específica
 
-A equipe de software composta por Augusto Daleffe e Ludmilla Silveira. Ficou responsável pelo desenvolvimento completo da aplicação web mensionada anteriormente. Neste presente repositório será encontrada toda o back-and de tal aplicação.
-O objetivo dessa parte do desenvolvimento era primeiramente desenvolver um banco de dados robusto o suficie para comportar todos os dados que irão ser recebidos das estações de coleta, e garantir a segurança dos mesmos. 
+A equipe de software composta por *Augusto Daleffe* e *Ludmilla Silveira*. Ficou responsável pelo desenvolvimento completo da aplicação web mensionada anteriormente. Neste presente repositório será encontrada toda o back-end de tal aplicação.
+
+O objetivo dessa parte do desenvolvimento era primeiramente desenvolver um banco de dados robusto o suficie para comportar todos os dados que irão ser recebidos das estações de coleta, e garantir a segurança dos mesmos.
+
 Considerando isso, foi desenvolvido todo um sistema de controle de acesso a interface web, onde existe um usuário master e somente ele pode cadastras novos usuários, garantindo acesso restrito a tal análise.
 No presente repositório vai ser encontrado desde a lógica da criação das tabelas no banco de dados, até a lógica de segurança das requisições. 
+
+A parte do front-end desenvolvida pela mesma equipe comentada anteriormente fica no repositório: [Estação meteorológica front-end](https://github.com/Ludmilahttps/EstacaoMeteorologicaFrontend.git)
+
+*Diagrama de alto nivel do software:*
+
+![](/Docs/DiagramaAltoNivel.png)
+
+*Fluxo grama simplificado do software:*
+
+![](/Docs/FluxoGrama.png)
+
+
 
 ## Funcionalidades
 
@@ -114,5 +130,108 @@ A aplicação web possui as seguintes funcionalidades:
 2. **Acesse a  aplicação:**
 
   A aplicação estará disponível em `http://localhost:3000`.
+
+## Como fazer o Deploy na nuvem
+
+No diretório ```Docs/``` existe o arquivo ```Guia de Deploy.pdf``` nele pode ser encontrado um passo a passo de como nós fizemos o deploy da nossa aplicação de forma gratuita na plataforma do Vercel. 
+
+O guia trás de forma muito bem detalhada, com presença de imagens o passo a passo que você deve seguir para conseguir utilizar essa aplicação na nuvem. 
+
+
+
+## Requisitos de software e regras de uso 
+
+No diretório ```Docs/``` existe o arquivo ```Requisitos de Software.pdf``` nele pode ser encontrado todosos requisitos funcionais e não funcionais do projeto de software, bem como as regras de negócio que foram utilizadas para o desenvolvimento do mesmo.
+
+## Diagrama de Casos de uso 
+
+![](/Docs/UseCaseDiagram.png)
+
+## Banco de dados 
+
+Para o desenvolvimento desse projeto foi utilizado o banco de dados do tipo *PostgreSQL* que segundo a nossa equipe seria um banco de dados adequado para a nossa abordagem e que nossos membros ja tinham trabalhado com ele anteriormente. 
+
+### Modelagem Conceitual
+
+![modelo conceitual](/Docs/ConceptualModel.png)
+
+### Modelagem Lógica
+
+![](/Docs/LogicModel.png)
+
+###  Scrip SQL
+
+O script SQL do banco está no arquivo ```tables.sql``` na raiz desse diretório.
+
+```
+-- Recreate the public schema
+DROP SCHEMA IF EXISTS public CASCADE;
+
+CREATE SCHEMA public AUTHORIZATION postgres;
+
+COMMENT ON SCHEMA public IS 'standard public schema';
+
+
+-- Create tables
+CREATE TABLE public."User" 
+(
+    cpf VARCHAR(11) PRIMARY KEY,
+    email VARCHAR(50) NOT NULL
+    "name" VARCHAR(50) NOT NULL,
+    position INT NOT NULL DEFAULT 1,
+    "password" VARCHAR(255) NOT NULL,
+    CHECK (position BETWEEN 0 AND 3)
+);
+
+CREATE TABLE public."Station" 
+(
+    idStation serial4 INT PRIMARY KEY DEFAULT,
+    "location" VARCHAR(100) NOT NULL,
+    "status" INT NOT NULL DEFAULT 1,
+    lastCheckUp DATE,
+    CHECK ("status" BETWEEN 0 AND 1)
+);
+
+CREATE TABLE public."DHT11" 
+(
+	idDHT11 serial4 INT PRIMARY KEY,
+	'date' DATE NOT NULL,
+	temperature FLOAT NOT NULL,
+	humidity FLOAT NOT NULL,
+	idStation INT NOT NULL,
+	CONSTRAINT dht11_station_fkey FOREIGN KEY (idStation) REFERENCES public."Station" (idStation)
+);
+
+CREATE TABLE public."Pluviometer" 
+(
+	idPluviometer serial4 INT PRIMARY KEY DEFAULT,
+	'date' DATE NOT NULL,
+	rainfall FLOAT NOT NULL,
+	idStation INT NOT NULL,
+	CONSTRAINT pluviometer_station_fkey FOREIGN KEY (idStation) REFERENCES public."Station" (idStation)
+);
+
+CREATE TABLE public."BMP280"
+(
+	idBMP280 serial4 INT PRIMARY KEY,
+	'date' DATE NOT NULL,
+	pressure FLOAT NOT NULL,
+	temperature FLOAT NOT NULL,
+	altitude FLOAT NOT NULL,
+	idStation INT NOT NULL,
+	CONSTRAINT bmp280_station_fkey FOREIGN KEY (idStation) REFERENCES public."Station" (idStation)
+);
+
+CREATE TABLE public."Anemometer"
+(
+	idAnemometer serial4 INT PRIMARY KEY,
+	'date' DATE NOT NULL,
+	windSpeed FLOAT NOT NULL,
+	windDirection VARCHAR(10) NOT NULL,
+	windAngle FLOAT NOT NULL,
+	idStation INT NOT NULL,
+	CONSTRAINT anemometer_station_fkey FOREIGN KEY (idStation) REFERENCES public."Station" (idStation)
+);
+```
 
 
