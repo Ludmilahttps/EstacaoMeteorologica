@@ -14,7 +14,7 @@ CREATE TABLE public."User"
     "name" VARCHAR(50) NOT NULL,
     position INT NOT NULL DEFAULT 1,
     "password" VARCHAR(255) NOT NULL,
-    CHECK (position BETWEEN 0 AND 2)
+    CHECK (position BETWEEN 0 AND 3)
 );
 
 CREATE TABLE public."Station" 
