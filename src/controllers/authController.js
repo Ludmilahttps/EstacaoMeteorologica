@@ -27,18 +27,18 @@ export async function signIn (request, response) {
     }
 }
 
-// export async function update (request, response) {
-//     const { email, id_employee } = request.body
-//     console.log(email)
-//     console.log(id_employee)
-//     const token = uuid()
-//     try {
-//         await authSchema.updateEmail(email, id_employee)
-//         return response.status(201).send('OK')
-//     } catch(error) {
-//         return response.send(error).status(500)
-//     }
-// }
+export async function update (request, response) {
+    const { email, id_employee } = request.body
+    console.log(email)
+    console.log(id_employee)
+    const token = uuid()
+    try {
+        await authSchema.updateEmail(email, id_employee)
+        return response.status(201).send('OK')
+    } catch(error) {
+        return response.send(error).status(500)
+    }
+}
 
 export async function signUp (request, response) {
     const { cpf, email, name, position,  password } = response.locals.newUser
