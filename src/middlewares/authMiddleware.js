@@ -5,6 +5,7 @@ export const validateUser = (req, res, next) => {
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     }
+    res.locals.newUser = value;
     next();
 };
 
