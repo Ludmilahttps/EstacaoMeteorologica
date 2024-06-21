@@ -11,7 +11,7 @@ dhtRoute.post(
 );
 
 dhtRoute.get(
-  "/dht/get",
+  "/dhtGet",
   dhtMiddleware.validateDataSelect,
   dhtController.selectDataDHT11
 );
