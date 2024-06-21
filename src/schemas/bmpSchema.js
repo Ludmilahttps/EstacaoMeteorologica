@@ -13,6 +13,14 @@ export const insertData = async (dado) => {
     }
 };
 
+export const selectDataBMP280 = async (startDate, endDate, idStation) => {
+    try {
+        return connection.query(querieBmp.selectDataBMP280(), [startDate, endDate, idStation]);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export const bmpSchema = Joi.object({
     idStation: Joi.string().required().trim(),
     pressure: Joi.string().required().trim(),

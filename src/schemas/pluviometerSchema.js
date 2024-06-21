@@ -13,7 +13,13 @@ export const insertData = async (dado) => {
   }
 };
 
-
+export const selectDataPluviometer = async (startDate, endDate, idStation) => {
+  try {
+    return connection.query(queriePluviometer.selectDataPluviometer(), [startDate, endDate, idStation]);
+  } catch (error) {
+    console.log(error);
+  }
+}
 // export const getOrdersByClientId = async (id) => {
 //   try {
 //     return connection.query(querieDht.getOrdersByClientId(id))

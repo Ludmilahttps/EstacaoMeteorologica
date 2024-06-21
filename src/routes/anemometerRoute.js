@@ -10,6 +10,12 @@ anemometerRoute.post(
   anemometerController.addData
 )
 
+anemometerRoute.get(
+  "/anemometerGet",
+  anemometerMiddleware.validateDataSelect,
+  anemometerController.selectDataAnemometer
+)
+
 // dhtRoute.get(
 //   "/dht",
 //   dhtMiddleware.getData,

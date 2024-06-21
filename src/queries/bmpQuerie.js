@@ -8,3 +8,18 @@ export const insertData = () => {
         `
         return query
     }
+
+export const selectDataBMP280 = () => {
+        
+        const query = `--sql
+            SELECT 
+                *
+            FROM
+                public."BMP280"
+            WHERE
+                "date" BETWEEN $1 AND $2
+            AND
+                "idstation" = $3
+        `
+        return query
+    }

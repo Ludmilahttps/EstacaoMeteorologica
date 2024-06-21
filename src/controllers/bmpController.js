@@ -24,6 +24,18 @@ export const addData = async (request, response) => {
   }
 };
 
+export const selectDataBMP280 = async (request, response) => {
+  const { startDate, endDate, idStation } = request.query;
+
+  try {
+    const result = await bmpSchema.selectDataBMP280(startDate, endDate, idStation);
+    return response.status(200).send(result.rows);
+  } catch (error) {
+    console.error(error);
+    return response.status(500).send("Internal system error.");
+  }
+}
+
 // export async function getClientsOrders(request, response) {
 //   const {id} = request.params
 

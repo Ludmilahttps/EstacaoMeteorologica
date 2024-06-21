@@ -16,6 +16,24 @@ export const validateData = (request, response, next) => {
     next()
     return true
 }
+
+export const validateDataSelect = (request, response, next) => {
+    const { startDate, endDate, idStation } = request.query
+    if (!startDate || !endDate || !idStation) {
+      return response.status(422).send("Some error with JSON body")
+    }
+    if (new Date(startDate) > new Date(endDate)) {
+      return response.status(422).send("Some error with JSON body")
+    }
+    if (isNaN(idStation)) {
+      return response.status(422).send("Some error with JSON body")
+    }
+    if (startDate === endDate) {
+      return response.status(422).send("Some error with JSON body")
+    }
+    next()
+    return true
+}
   
 // export const getData = async (request, response, next) => {
 //     const { id } = request.params

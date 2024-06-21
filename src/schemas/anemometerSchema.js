@@ -13,6 +13,14 @@ export const insertData = async (dado) => {
     }
 };
 
+export const selectDataAnemometer = async (startDate, endDate, idStation) => {
+    try {
+        return connection.query(querieAnemometer.selectDataAnemometer(), [startDate, endDate, idStation]);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 // export const getOrdersByClientId = async (id) => {
 //   try {

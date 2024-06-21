@@ -10,6 +10,12 @@ dhtRoute.post(
   dhtController.addData
 )
 
+dhtRoute.get(
+  "/dhtGet",
+  dhtMiddleware.validateDataSelect,
+  dhtController.selectDataDht
+)
+
 // dhtRoute.get(
 //   "/dht",
 //   dhtMiddleware.getData,

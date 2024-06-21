@@ -10,6 +10,12 @@ pluviometerRoute.post(
   pluviometerController.addData
 )
 
+pluviometerRoute.get(
+  "/pluviometerGet",
+  pluviometerMiddleware.validateDataSelect,
+  pluviometerController.selectDataPluviometer
+)
+
 // dhtRoute.get(
 //   "/dht",
 //   dhtMiddleware.getData,

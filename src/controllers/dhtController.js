@@ -20,6 +20,16 @@ export const addData = async (request, response) => {
   }
 }
 
+export const selectDataDHT11 = async (request, response) => {
+  const { startDate, endDate, idStation } = request.query
+  try {
+    const result = await dhtSchema.selectDataDHT11(startDate, endDate, idStation)
+    return response.status(200).send(result.rows)
+  } catch (error) {
+    return response.status(500).send(`Internal system error.`)
+  }
+}
+
 // export async function getClientsOrders(request, response) {
 //   const {id} = request.params
 

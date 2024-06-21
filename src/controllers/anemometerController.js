@@ -20,3 +20,13 @@ export const addData = async (request, response) => {
         return response.status(500).send(`Internal system error.`)
     }
 }
+
+export const selectDataAnemometer = async (request, response) => {
+    const { startDate, endDate, idStation } = request.query
+    try {
+        const result = await anemometerSchema.selectDataAnemometer(startDate, endDate, idStation)
+        return response.status(200).send(result.rows)
+    } catch (error) {
+        return response.status(500).send(`Internal system error.`)
+    }
+}
