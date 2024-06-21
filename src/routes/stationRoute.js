@@ -5,5 +5,7 @@ const stationRoute = Router();
 
 stationRoute.get(
     "/station",
-    stationController.getStation
+    stationController.fetchStations
     );
+
+export { stationRoute }

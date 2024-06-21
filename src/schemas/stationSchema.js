@@ -28,7 +28,7 @@ export const getStationById = async (idStation) => {
     }
 };
 
-export const getStation = async () => {
+export const getStations = async () => {
     try {
         const result = await connection.query(querieStation.getStation());
         return result.rows;
