@@ -6,6 +6,6 @@ import { dhtRoute } from "./dhtRoute.js"
 import { bmpRoute } from "./bmpRoute.js"
 
 const router = Router()
-router.use([authRoute, dhtRoute, pluviometerRoute, anemometerRoute, bmpRoute])
+router.use([authRoute, dhtRoute, pluviometerRoute, anemometerRoute, bmpRoute, stationRoute])
 
 export default router
