@@ -28,6 +28,17 @@ export const getStationById = async (idStation) => {
     }
 };
 
+export const getStation = async () => {
+    try {
+        const result = await connection.query(querieStation.getStation());
+        return result.rows;
+    }
+    catch (error) {
+        console.log(error);
+        throw new Error("Error fetching station");
+    }
+};
+
 export const getStationByCheckUp = async (lastCheckUp) => {
     try {
         const result = await connection.query(querieStation.getStationByCheckUp(), [lastCheckUp]);

@@ -14,6 +14,13 @@ export const getStationById = () => {
   return query;
 };
 
+export const getStation = () => {
+  const query = `--sql
+      SELECT * FROM public.Station;
+  `;
+  return query;
+}
+
 export const getStationByCheckUp = () => {
   const query = `--sql
       SELECT * FROM public."Station"
