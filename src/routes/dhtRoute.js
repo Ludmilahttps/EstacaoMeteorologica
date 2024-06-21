@@ -8,13 +8,13 @@ dhtRoute.post(
   "/dht",
   dhtMiddleware.validateData,
   dhtController.addData
-)
+);
 
 dhtRoute.get(
-  "/dhtGet",
+  "/dht/get",
   dhtMiddleware.validateDataSelect,
   dhtController.selectDataDHT11
-)
+);
 
 // dhtRoute.get(
 //   "/dht",

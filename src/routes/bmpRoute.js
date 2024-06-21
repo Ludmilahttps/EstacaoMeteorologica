@@ -8,13 +8,13 @@ bmpRoute.post(
   "/bmp",
   bmpMiddleware.validateData,
   bmpController.addData
-)
+);
 
 bmpRoute.get(
   "/bmpGet",
   bmpMiddleware.validateDataSelect,
   bmpController.selectDataBMP280
-)
+);
 
 // dhtRoute.get(
 //   "/dht",
