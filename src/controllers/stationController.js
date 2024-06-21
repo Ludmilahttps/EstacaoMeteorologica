@@ -2,12 +2,15 @@ import dotenv from "dotenv"
 import { stationSchema } from "../schemas/index.js"
 
 
-export const fetchStations = async (req, res) => {
+dotenv.config()
+
+export const fetchStations = async (request, response) => {
+    const { idStation, location} = request.query
     try {
         const stations = await stationSchema.getStations();
-        res.json(stations);
+        response.json(stations);
     } catch (error) {
         console.error('Error fetching stations:', error);
-        res.status(500).send('Server Error');
+        response.status(500).send('Server Error');
     }
 };

@@ -19,7 +19,7 @@ export const getStation = () => {
       SELECT idStation, "location" FROM public."Station";
   `;
   return query;
-}
+};
 
 export const getStationByCheckUp = () => {
   const query = `--sql
