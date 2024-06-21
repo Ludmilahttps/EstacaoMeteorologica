@@ -13,7 +13,7 @@ dhtRoute.post(
 dhtRoute.get(
   "/dhtGet",
   dhtMiddleware.validateDataSelect,
-  dhtController.selectDataDht
+  dhtController.selectDataDHT11
 )
 
 // dhtRoute.get(

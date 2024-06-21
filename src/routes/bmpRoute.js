@@ -13,7 +13,7 @@ bmpRoute.post(
 bmpRoute.get(
   "/bmpGet",
   bmpMiddleware.validateDataSelect,
-  bmpController.selectDataBmp
+  bmpController.selectDataBMP280
 )
 
 // dhtRoute.get(
