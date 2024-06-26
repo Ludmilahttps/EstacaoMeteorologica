@@ -16,7 +16,7 @@ export const getStationById = () => {
 
 export const getStation = () => {
   const query = `--sql
-      SELECT idStation, "location" FROM public."Station";
+      SELECT idstation, "location" FROM public."Station";
   `;
   return query;
 };
