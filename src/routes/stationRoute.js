@@ -4,7 +4,7 @@ import { stationController } from "../controllers/index.js";
 const stationRoute = Router();
 
 stationRoute.get(
-    "/station",
+    "/stations",
     stationController.fetchStations
     );
 
