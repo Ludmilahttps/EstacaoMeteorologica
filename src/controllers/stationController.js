@@ -5,7 +5,6 @@ import { stationSchema } from "../schemas/index.js"
 dotenv.config()
 
 export const fetchStations = async (request, response) => {
-    const { idStation, location} = request.query
     try {
         const stations = await stationSchema.getStations();
         response.json(stations);
