@@ -12,7 +12,8 @@ export const insertData = async (dado) => {
     console.log(error)
   }
 }
-export const selectDataDHT11 = async (startDate, endDate, idStation) => {
+export const selectDataDHT11 = async (required) => {
+  const { startDate, endDate, idStation } = required
   try {
     return connection.query(querieDht.selectDataDHT11(), [startDate, endDate, idStation])
   } catch (error) {

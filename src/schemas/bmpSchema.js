@@ -13,7 +13,8 @@ export const insertData = async (dado) => {
     }
 };
 
-export const selectDataBMP280 = async (startDate, endDate, idStation) => {
+export const selectDataBMP280 = async (required) => {
+    const { startDate, endDate, idStation } = required;
     try {
         return connection.query(querieBmp.selectDataBMP280(), [startDate, endDate, idStation]);
     } catch (error) {
