@@ -13,8 +13,7 @@ export const insertData = async (dado) => {
   }
 };
 
-export const selectDataPluviometer = async (required) => {
-  const { startDate, endDate, idStation } = required;
+export const selectDataPluviometer = async (startDate, endDate, idStation ) => {
   try {
     return connection.query(queriePluviometer.selectDataPluviometer(), [startDate, endDate, idStation]);
   } catch (error) {

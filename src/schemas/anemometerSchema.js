@@ -13,8 +13,7 @@ export const insertData = async (dado) => {
     }
 };
 
-export const selectDataAnemometer = async (required) => {
-    const { startDate, endDate, idStation } = required;
+export const selectDataAnemometer = async (startDate, endDate, idStation ) => {
     try {
         return connection.query(querieAnemometer.selectDataAnemometer(), [startDate, endDate, idStation]);
     } catch (error) {
