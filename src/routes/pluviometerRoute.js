@@ -16,10 +16,5 @@ pluviometerRoute.get(
   pluviometerController.selectDataPluviometer
 )
 
-// dhtRoute.get(
-//   "/dht",
-//   dhtMiddleware.getData,
-//   dhtController.getDatadht
-// )
 
 export { pluviometerRoute }

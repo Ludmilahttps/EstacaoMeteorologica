@@ -22,7 +22,6 @@ export const addData = async (request, response) => {
 
 export const selectDataDHT11 = async (request, response) => {
   const { startDate, endDate, idStation } = request.query
-  console.log(request)
   try {
     const result = await dhtSchema.selectDataDHT11(startDate, endDate, idStation)
     return response.status(200).send(result.rows)
@@ -31,15 +30,3 @@ export const selectDataDHT11 = async (request, response) => {
   }
 }
 
-// export async function getClientsOrders(request, response) {
-//   const {id} = request.params
-
-//   try {
-//   const ordersByClient = await clientSchema.getOrdersByClientId(Number(id))
-//   response.send(ordersByClient.rows)
-  
-//   } catch (error) {
-//       console.log(error)
-//       response.sendStatus(error)
-//   }
-// }

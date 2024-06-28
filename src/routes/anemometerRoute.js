@@ -16,10 +16,5 @@ anemometerRoute.get(
   anemometerController.selectDataAnemometer
 )
 
-// dhtRoute.get(
-//   "/dht",
-//   dhtMiddleware.getData,
-//   dhtController.getDatadht
-// )
 
 export { anemometerRoute }

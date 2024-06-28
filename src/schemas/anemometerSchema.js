@@ -22,18 +22,15 @@ export const selectDataAnemometer = async (required) => {
     }
 }
 
-
-// export const getOrdersByClientId = async (id) => {
-//   try {
-//     return connection.query(querieDht.getOrdersByClientId(id))
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
-
 export const anemometerSchema = joi.object({
     idStation: joi.string().required().trim(),
     windSpeed: joi.string().required().trim(),
     windDirection: joi.string().required().trim(),
     windAngle: joi.string().required().trim(),
+});
+
+export const anemometerSchemaSelect = joi.object({
+    startDate: joi.string().required().trim(),
+    endDate: joi.string().required().trim(),
+    idStation: joi.string().required().trim(),
 });

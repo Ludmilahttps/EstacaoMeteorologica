@@ -21,15 +21,14 @@ export const selectDataPluviometer = async (required) => {
     console.log(error);
   }
 }
-// export const getOrdersByClientId = async (id) => {
-//   try {
-//     return connection.query(querieDht.getOrdersByClientId(id))
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
 
 export const pluviometerSchema = joi.object({
     idStation: joi.string().required().trim(),
     rainfall: joi.string().required().trim()
+});
+
+export const pluviometerSchemaSelect = joi.object({
+    startDate: joi.string().required().trim(),
+    endDate: joi.string().required().trim(),
+    idStation: joi.string().required().trim()
 });

@@ -36,15 +36,3 @@ export const selectDataBMP280 = async (request, response) => {
   }
 }
 
-// export async function getClientsOrders(request, response) {
-//   const {id} = request.params
-
-//   try {
-//   const ordersByClient = await clientSchema.getOrdersByClientId(Number(id))
-//   response.send(ordersByClient.rows)
-  
-//   } catch (error) {
-//       console.log(error)
-//       response.sendStatus(error)
-//   }
-// }

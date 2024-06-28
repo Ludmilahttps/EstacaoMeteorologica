@@ -22,15 +22,6 @@ export const selectDataDHT11 = async (startDate, endDate, idStation ) => {
 }
 
 
-
-// export const getOrdersByClientId = async (id) => {
-//   try {
-//     return connection.query(querieDht.getOrdersByClientId(id))
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
-
 export const dhtSchema = joi.object({
     idStation: joi.string().required().trim(),
     temperature: joi.string().required().trim(),

@@ -28,3 +28,9 @@ export const bmpSchema = Joi.object({
     temperature: Joi.string().required().trim(),
     altitude: Joi.string().required().trim(),
 });
+
+export const bmpSchemaSelect = Joi.object({
+    startDate: Joi.string().required().trim(),
+    endDate: Joi.string().required().trim(),
+    idStation: Joi.string().required().trim(),
+});

@@ -16,10 +16,6 @@ bmpRoute.get(
   bmpController.selectDataBMP280
 );
 
-// dhtRoute.get(
-//   "/dht",
-//   dhtMiddleware.getData,
-//   dhtController.getDatadht
-// )
+
 
 export { bmpRoute }

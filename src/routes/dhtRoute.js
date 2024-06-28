@@ -16,10 +16,5 @@ dhtRoute.get(
   dhtController.selectDataDHT11
 );
 
-// dhtRoute.get(
-//   "/dht",
-//   dhtMiddleware.getData,
-//   dhtController.getDatadht
-// )
 
 export { dhtRoute }
