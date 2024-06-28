@@ -19,18 +19,9 @@ export const validateData = (request, response, next) => {
 
 export const validateDataSelect = (request, response, next) => {
     const { startDate, endDate, idStation } = request.query
-    if (!startDate || !endDate || !idStation) {
-      return response.status(422).send("Some error with JSON body")
-    }
-    if (new Date(startDate) > new Date(endDate)) {
-      return response.status(422).send("Some error with JSON body")
-    }
-    if (isNaN(idStation)) {
-      return response.status(422).send("Some error with JSON body")
-    }
-    if (startDate === endDate) {
-      return response.status(422).send("Some error with JSON body")
-    }
+
+    const { error } = dhtSchema.dhtSchemaSelect.validate({ startDate, endDate, idStation })
+    if (error) return response.status(422).send("Some error with JSON body")
     next()
     return true
 }

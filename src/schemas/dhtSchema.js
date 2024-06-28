@@ -12,8 +12,8 @@ export const insertData = async (dado) => {
     console.log(error)
   }
 }
-export const selectDataDHT11 = async (required) => {
-  const { startDate, endDate, idStation } = required
+export const selectDataDHT11 = async (startDate, endDate, idStation ) => {
+  
   try {
     return connection.query(querieDht.selectDataDHT11(), [startDate, endDate, idStation])
   } catch (error) {
@@ -36,3 +36,11 @@ export const dhtSchema = joi.object({
     temperature: joi.string().required().trim(),
     humidity: joi.string().required().trim()
 });
+
+export const dhtSchemaSelect = joi.object({
+    startDate: joi.string().required().trim(),
+    endDate: joi.string().required().trim(),
+    idStation: joi.string().required().trim()
+});
+
+

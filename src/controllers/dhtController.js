@@ -22,6 +22,7 @@ export const addData = async (request, response) => {
 
 export const selectDataDHT11 = async (request, response) => {
   const { startDate, endDate, idStation } = request.query
+  console.log(request)
   try {
     const result = await dhtSchema.selectDataDHT11(startDate, endDate, idStation)
     return response.status(200).send(result.rows)
