@@ -17,10 +17,9 @@ export const insertData = () => {
           FROM
               public."DHT11"
           WHERE
-              "date" BETWEEN "startDate" AND "endDate"
+              date BETWEEN $1 AND $2
           AND
-              "idstation" = "idStation"
-            VALUES ($1, $2, $3)
+              idstation = $3
       `
     return query
   }
