@@ -1,4 +1,4 @@
-# Back-and da Estação Meteorológica UFSC-Araranguá
+# Back-end da Estação Meteorológica UFSC-Araranguá
 
 Este projeto foi desenvolvido durante a disciplina de Projeto Integrador 1 do curso de Engenharia de Computação da UFSC Araranguá no semestre de 2024.1. 
 
